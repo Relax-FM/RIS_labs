@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link type="text/css" href="{{ url_for('static', filename='main/style.css') }}" rel="stylesheet" />
+    <meta charset="UTF-8">
+    <title>Main</title>
+</head>
+<body>
+    <div class="wrapper">
+        <section class="header">
+            <div class="menu">
+                <nav class="menu__body">
+                    <ul class="menu__list">
+                        <li><a href={{url_for('menu_choice')}} class="menu__link">Назад</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <section class="body">
+            <h1 class="title">
+                Ошибка! Данный раздел доступен только покупателям магазина!
+            </h1>
+        </section>
+    </div>
+</body>
+</html>

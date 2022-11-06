@@ -1,0 +1,186 @@
+@charset "UTF-8";
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700&family=Montserrat:wght@300;400;500;700&display=swap"); /*Обнуление*/
+* {
+  padding: 0;
+  margin: 0;
+  border: 0;
+}
+
+*, *:before, *:after {
+  -moz-box-sizing: border-box;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+:focus, :active {
+  outline: none;
+}
+
+a:focus, a:active {
+  outline: none;
+}
+
+nav, footer, header, aside {
+  display: block;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 1;
+  font-size: 14px;
+  -ms-text-size-adjust: 100%;
+  -moz-text-size-adjust: 100%;
+  -webkit-text-size-adjust: 100%;
+}
+
+input, button, textarea {
+  font-family: inherit;
+}
+
+input::-ms-clear {
+  display: none;
+}
+
+button {
+  cursor: pointer;
+}
+
+button::-moz-focus-inner {
+  padding: 0;
+  border: 0;
+}
+
+a, a:visited {
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+ul li {
+  list-style: none;
+}
+
+img {
+  vertical-align: top;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+/*--------------------*/
+.header {
+  padding: 20px 0;
+}
+
+.menu {
+  background: rgba(14, 42, 58, 0.75);
+  border-radius: 40px 40px 0 0;
+  padding: 0 20px 0 20px;
+}
+.menu__body {
+  padding: 50px 0;
+}
+.menu__list {
+  display: flex;
+  gap: 0 50px;
+  align-items: center;
+}
+.menu__link {
+  font-weight: 600;
+  color: #fff;
+  font-size: 20px;
+  transition-duration: 0.35s;
+  padding: 10px 20px 10px 20px;
+}
+.menu__link:hover {
+  background-color: rgba(227, 228, 248, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+.body {
+  flex: 1 0 100%;
+  margin-bottom: 20px;
+  background: rgba(14, 42, 58, 0.75);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px 0;
+  border-radius: 0 0 40px 40px;
+  color: #fff;
+}
+
+.categories {
+  display: flex;
+  justify-content: space-around;
+}
+.categories__item {
+  font-size: 17px;
+  font-weight: 600;
+  border: 2px solid #6b6a6a;
+  flex: 0 0 15%;
+  padding: 5px 0;
+  text-align: center;
+}
+.categories__item:hover {
+  border: 2px solid #f6eeee;
+}
+
+.result {
+  display: flex;
+  justify-content: space-around;
+}
+.result__item {
+  font-size: 15px;
+  border: 1px solid #6b6a6a;
+  flex: 0 0 15%;
+  padding: 5px 0;
+  text-align: center;
+}
+.result__item:hover {
+  border: 1px solid #f6eeee;
+}
+
+.reset {
+  padding-top: 30px;
+  margin: 0 auto;
+}
+.reset__link {
+  font-weight: 600;
+  color: #fff;
+  font-size: 20px;
+  transition-duration: 0.35s;
+  padding: 10px 20px 10px 20px;
+}
+.reset__link:hover {
+  background-color: rgba(227, 228, 248, 0.2);
+  box-shadow: 0 4px 4px 0 rgba(0, 0, 0, 0.25);
+  border-radius: 20px;
+}
+
+body {
+  font-family: "Montserrat", sans-serif;
+  background-image: url("https://gamerwall.pro/uploads/posts/2022-03/1648584237_1-gamerwall-pro-p-foni-dlya-biblioteki-stim-krasivie-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: black;
+  backdrop-filter: blur(1px);
+}
+
+.wrapper {
+  max-width: 1000px;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
+
+/*# sourceMappingURL=style.css.map */

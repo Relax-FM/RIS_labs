@@ -2,12 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='queries/style.css')}}"/>
+    <title>Search</title>
 </head>
 <body>
-    <form method="post" action="">
-        <input type="text" name="product_name" placeholder="Введите название продукта">
-        <button type="submit">Click me</button>
-    </form>
+    <div class="wrapper">
+        <section class="header">
+            <div class="menu">
+                <nav class="menu__body">
+                    <ul class="menu__list">
+                        <li><a href={{url_for('bp_query.queries')}} class="menu__link">Найти товар</a></li>
+                        <li><a href={{url_for('exit_func')}} class="menu__link">Выйти</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </section>
+        <section class="body">
+            <form method="post" action="" class="search-form">
+                <input type="text" name="product_name" placeholder="Введите название продукта" class="search-form__input">
+                <button type="submit" class="search-form__button"><img src='{{ url_for("static", filename="pictures/magnifier2.png") }}' alt="click"></button>
+            </form>
+        </section>
+    </div>
 </body>
 </html>

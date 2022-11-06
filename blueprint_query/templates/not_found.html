@@ -1,16 +1,16 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='db_result/style.css')}}"/>
+    <link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='not_found/style.css')}}"/>
     <title>Result</title>
 </head>
 <body>
     <div class="wrapper">
-        <section class="header">
+         <section class="header">
             <div class="menu">
                 <nav class="menu__body">
                     <ul class="menu__list">
@@ -21,18 +21,7 @@
             </div>
         </section>
         <section class="body">
-            <div class="categories">
-                {% for i in schema %}
-                    <div class="categories__item">{{i}}</div>
-                {% endfor %}
-            </div>
-            {% for i in result %}
-                <div class="result">
-                    {% for j in i %}
-                        <div class="result__item">{{j}}</div>
-                    {% endfor %}
-                </div>
-            {% endfor %}
+            <h1 class="title">Ошибка, ничего не найдено!</h1>
             <div class="reset"><a href="{{url_for('bp_query.queries')}}" class="reset__link">Назад</a></div>
         </section>
     </div>

@@ -1,0 +1,22 @@
+@import "../shared/fonts";
+@import "../shared/nullstyle";
+@import "../shared/header";
+@import "body";
+
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-image: url("https://gamerwall.pro/uploads/posts/2022-03/1648584237_1-gamerwall-pro-p-foni-dlya-biblioteki-stim-krasivie-1.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  background-color: black;
+  backdrop-filter: blur(1px);
+}
+.wrapper {
+  max-width: 1000px;
+  min-height: 100%;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+}
