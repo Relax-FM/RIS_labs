@@ -8,15 +8,21 @@
     <title>Document</title>
 </head>
 <body>
+<table align=center width=60% cellspacing=5 border=5 bordercolor=#fdcf85 bgcolor=#f8f8ff>
+  </TR>
+    <TR align=center>
     {% for i in schema %}
-        {{i}}
+        <TH width=30% colspan=2>{{i}}</TH>
     {% endfor %}
-    <ul>
-        {% for i in result %}
-            {% for j in i %}
-                <li>{{j}}</li>
-            {% endfor %}
+    </TR>
+    {% for i in result %}
+    <TR align=center>
+        {% for j in i %}
+            <TH width=30% colspan=2>{{j}}</TH>
         {% endfor %}
-    </ul>
+    </TR>
+    {% endfor %}
+
+</table>
 </body>
 </html>
