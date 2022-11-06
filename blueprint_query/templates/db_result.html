@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    {% for i in schema %}
+        {{i}}
+    {% endfor %}
+    <ul>
+        {% for i in result %}
+            {% for j in i %}
+                <li>{{j}}</li>
+            {% endfor %}
+        {% endfor %}
+    </ul>
+</body>
+</html>
