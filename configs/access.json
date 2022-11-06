@@ -3,7 +3,7 @@
     "bp_query"
   ],
   "admin": [
-    "blueprint_market",
+    "blueprint_report",
     "bp_query"
   ],
   "external": [

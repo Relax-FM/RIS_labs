@@ -1,1 +1,1 @@
-select * from lab.Library where id_library='$input_product'
+select * from supermarket.product where prod_name='$input_product'

@@ -3,7 +3,7 @@
 <head>
     <link type="text/css" href="{{ url_for('static', filename='main/style.css') }}" rel="stylesheet" />
     <meta charset="UTF-8">
-    <title>Main</title>
+    <title>Menu queries</title>
 </head>
 <body>
     <div class="wrapper">
@@ -11,8 +11,9 @@
             <div class="menu">
                 <nav class="menu__body">
                     <ul class="menu__list">
-                        <li><a href={{url_for('bp_query.bp_menu')}} class="menu__link">Меню запросов</a></li>
-                        <li><a href={{url_for('blueprint_report.start_report')}} class="menu__link">Меню отчетов</a></li>
+                        <li><a href={{url_for('menu_choice')}} class="menu__link">Вернуться в меню</a></li>
+                        <li><a href={{url_for('bp_query.queries')}} class="menu__link">Запрос №1</a></li>
+                      <li><a href={{url_for('bp_query.query2')}} class="menu__link">Запрос №2</a></li>
                         <li><a href={{url_for('exit_func')}} class="menu__link">Выйти</a></li>
                     </ul>
                 </nav>
@@ -20,7 +21,7 @@
         </section>
         <section class="body">
             <h1 class="title">
-                Добро пожаловать, Вы зашли как сотрудник магазина.
+                Выберите запрос.
             </h1>
         </section>
     </div>

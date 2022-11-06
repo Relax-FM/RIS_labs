@@ -35,3 +35,13 @@ def queries():
         else:
             return render_template('not_found.html')
     return render_template('queries.html')
+
+@blueprint_query.route('/menu')
+@group_required
+def bp_menu():
+    return render_template('Start_page.html')
+
+@blueprint_query.route('/query2')
+@group_required
+def query2():
+    return "query2"
