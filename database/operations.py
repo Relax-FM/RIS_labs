@@ -36,3 +36,12 @@ def select_dict(db_config: dict, sql: str) -> List:
             result.append(dict(zip(schema, row)))
 
     return result
+
+def insert(db_config: dict, _sql: str):
+    with UseDatabase(db_config) as cursor:
+
+        if cursor is None:
+            raise ValueError("Курсор не создан")
+        result = cursor.execute(_sql)
+
+    return result
