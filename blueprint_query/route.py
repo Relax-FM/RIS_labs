@@ -31,7 +31,7 @@ def queries():
             product_result, schema = select(current_app.config['db_config'], _sql)
             if len(product_result) == 0:
                 return render_template('not_found.html')
-            return render_template('db_result.html', schema=schema, result=product_result)
+            return render_template('db_result.html', schema=["№", "Наименование", "Ед. измерения", "Цена"], result=product_result)
         else:
             return render_template('not_found.html')
     return render_template('queries.html')

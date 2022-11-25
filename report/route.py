@@ -18,7 +18,7 @@ report_list = [
 
 report_url = {
     '1': {'create_rep':'bp_report.create_rep1', 'view_rep':'bp_report.view_rep1'},
-    '2': {'create_rep':'bp_report.create_rep2', 'view_rep':'bp_report.view_rep'}
+    '2': {'create_rep':'bp_report.create_rep2', 'view_rep':'bp_report.view_rep2'}
 }
 
 
@@ -71,9 +71,20 @@ def view_rep1():
             _sql = provider.get('rep1.sql', in_year=rep_year, in_month=rep_month)
             product_result, schema = select(current_app.config['db_config'], _sql)
             if product_result:
-                return render_template('result_rep1.html', schema=schema, result=product_result)
+                return render_template('result_rep1.html', schema=["№", "Продукт №", "Кол-во", "Месяц", "Год"], result=product_result)
             else:
                 return "Такой отчёт не был создан"
         else:
             return "Repeat input"
 
+@blueprint_report.route('/create_rep2')
+@group_required
+def create_rep2():
+    print("GET_create2")
+    return "Вы создаете Отчёт 2"
+
+@blueprint_report.route('/view_rep2')
+@group_required
+def view_rep2():
+    print("GET_create2")
+    return "Вы просматриваете Отчёт 2"
