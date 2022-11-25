@@ -1,0 +1,1 @@
+select * from supermarket.product_report where rep_year = '$in_year'
