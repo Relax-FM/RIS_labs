@@ -1,6 +1,6 @@
 {
   "typical": [
-    "bp_query", "bp_report.report_page1", "bp_report.start_report"
+    "bp_query", "bp_report.report_page1", "bp_report.view_rep1"
   ],
   "admin": [
     "bp_report",

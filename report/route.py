@@ -49,10 +49,15 @@ def create_rep1():
         rep_month = request.form.get('input_month')
         rep_year = request.form.get('input_year')
         print("Loading...")
-        if rep_year:
-            res = call_proc(current_app.config['db_config'], 'product_report_new', rep_month, rep_year)
-            print('res=', res)
-            return render_template('report_created.html')
+        if rep_year and rep_month:
+            _sql = provider.get('rep1.sql', in_year=rep_year, in_month=rep_month)
+            product_result, schema = select(current_app.config['db_config'], _sql)
+            if product_result:
+                return "Такой отчёт уже существует"
+            else:
+                res = call_proc(current_app.config['db_config'], 'product_report_new', rep_month, rep_year)
+                print('res=', res)
+                return render_template('report_created.html')
         else:
             return "Repeat input"
 
