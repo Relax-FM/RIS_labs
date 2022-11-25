@@ -1,9 +1,9 @@
 {
   "typical": [
-    "bp_query"
+    "bp_query", "bp_report.report_page1", "bp_report.start_report"
   ],
   "admin": [
-    "blueprint_report",
+    "bp_report",
     "bp_query"
   ],
   "external": [

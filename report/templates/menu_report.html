@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Меню отчётов</title>
     <style type="text/css">
         .named_list{
             font-size: 12pt;
@@ -15,13 +15,13 @@
     </style>
 </head>
 <body>
-    <h2 align="center">reports menu</h2>
+    <h2 align="center">Меню отчетов</h2>
     <center>
         {% for report in report_list %}
         <form action='' method = 'POST'>
             <label for="create_rep" class="named_list">{{report['rep_name']}}</label>
-            <input type="submit" name="create_rep" id="create_rep" value="create">
-            <input type="submit" name="view_rep" id="view_rep" value="view">
+            <input type="submit" name="create_rep" id="create_rep" value="Создать отчёт">
+            <input type="submit" name="view_rep" id="view_rep" value="Просмотреть отчёт">
             <input type="hidden" name="rep_id" value="{{report['rep_id']}}">
         </form>
         {% endfor %}

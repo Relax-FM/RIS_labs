@@ -2,6 +2,7 @@ from typing import Optional
 
 from pymysql import connect
 from pymysql.cursors import Cursor
+from pymysql.connections import Connection
 from pymysql.err import OperationalError
 
 
@@ -9,6 +10,8 @@ class UseDatabase:
 
     def __init__(self, config: dict):
         self.config = config
+        self.conn: Optional[Connection] = None
+        self.cursor: Optional[Cursor] = None
 
     def __enter__(self) -> Optional[Cursor]:
         try:
@@ -25,14 +28,16 @@ class UseDatabase:
             return None
 
     def __exit__(self, exc_type, exc_val, exc_tr) -> bool:
-        if exc_val:
-            # print(exc_val)
-            # print(exc_type)
-            if exc_val.args[0] != 'Курсор не создан':
-                self.cursor.close()
-                self.conn.close()
-        else:
-            self.cursor.close()
+        if exc_type:
+            print(f"Error type: {exc_type.__name__}")
+            print(f"DB error: {' '.join(exc_val.args)}")
+
+        if self.conn and self.cursor:
+            if exc_type:
+                self.conn.rollback()
+            else:
+                self.conn.commit()
             self.conn.close()
+            self.cursor.close()
         return True
 

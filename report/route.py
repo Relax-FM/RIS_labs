@@ -11,8 +11,8 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 
 
 report_list = [
-    {'rep_name':'report1 ', 'rep_id':'1'},
-    {'rep_name':'report2 ', 'rep_id':'2'}
+    {'rep_name':'Отчёт 1 ', 'rep_id':'1'},
+    {'rep_name':'Отчёт 2 ', 'rep_id':'2'}
 ]
 
 
@@ -44,12 +44,13 @@ def create_rep1():
         print("GET_create")
         return render_template('report_create.html')
     else:
-        print(current_app.config['dbconfig'])
+        print(current_app.config['db_config'])
         print("POST_create")
+        rep_month = request.form.get('input_month')
         rep_year = request.form.get('input_year')
         print("Loading...")
         if rep_year:
-            res = call_proc(current_app.config['dbconfig'], 'product_report', rep_year)
+            res = call_proc(current_app.config['db_config'], 'product_report_new', rep_month, rep_year)
             print('res=', res)
             return render_template('report_created.html')
         else:
@@ -62,12 +63,17 @@ def view_rep1():
     if request.method == 'GET':
         return render_template('view_rep.html')
     else:
+        rep_month = request.form.get('input_month')
         rep_year = request.form.get('input_year')
+        print(rep_month)
         print(rep_year)
-        if rep_year:
-            _sql = provider.get('rep1.sql', in_year=rep_year)
-            product_result, schema = select(current_app.config['dbconfig'], _sql)
-            return render_template('result_rep1.html', schema = schema, result = product_result)
+        if rep_year and rep_month:
+            _sql = provider.get('rep1.sql', in_year=rep_year, in_month=rep_month)
+            product_result, schema = select(current_app.config['db_config'], _sql)
+            if product_result:
+                return render_template('result_rep1.html', schema=schema, result=product_result)
+            else:
+                return "Такой отчёт не был создан"
         else:
             return "Repeat input"
 

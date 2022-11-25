@@ -13,11 +13,16 @@ def login_required(func):
 
 
 def group_validation(config: dict) -> bool:
+    endpoint_func = request.endpoint
+    print('endpoint_func', endpoint_func) # имя блюпринта.имя обработчика
     endpoint_app = request.endpoint.split('.')[0]
+    print('endpoint_app', endpoint_app) # имя блюпринта
     if 'user_group' in session:
         user_group = session['user_group']
         if user_group in config and endpoint_app in config[user_group]:
-            return True
+            return True #если есть имя блюпринта
+        elif user_group in config and endpoint_func in config[user_group]:
+            return True  #если есть имя блюпринта+обработчика
     return False
 
 
