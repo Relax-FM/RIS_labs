@@ -37,12 +37,17 @@ def group_required(f):
 
 
 def external_validation(config):
+    endpoint_func = request.endpoint
+    print('endpoint_func', endpoint_func)  # имя блюпринта.имя обработчика
     endpoint_app = request.endpoint.split('.')[0]
+    print('endpoint_app', endpoint_app)  # имя блюпринта
     user_id = session.get('user_id', None)
     user_group = session.get('user_group', None)
     if user_id and user_group is None:
         if endpoint_app in config['external']:
-            return True
+            return True #если есть имя блюпринта
+        elif endpoint_func in config['external']:
+            return True  #если есть имя блюпринта+обработчика
     return False
 
 

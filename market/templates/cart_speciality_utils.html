@@ -1,0 +1,17 @@
+{% macro render_item(item, show_form=False) %}
+<div style='border-style: solid; border-color: #1CAC78; margin: 2px'>
+    <p>
+        <span>
+            <b>Специальность врача:</b> {{ item['Speciality'] }}
+        </span><br>
+    </p>
+    {% if show_form %}
+    <div align="right">
+        <form action="" method="post">
+            <input type="submit" value="Выбрать">
+            <input type="hidden" name="Speciality" value="{{ item['Speciality'] }}">
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endmacro %}

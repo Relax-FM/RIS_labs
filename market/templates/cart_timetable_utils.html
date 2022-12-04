@@ -1,0 +1,21 @@
+{% macro render_item(item, show_form=False) %}
+<div style='border-style: solid; border-color: #1CAC78; margin: 2px'>
+    <p>
+        <span>
+            <b>Дата:</b> {{ item['date_zap'] }}
+        </span><br>
+        <span>
+            <b>Время:</b> {{ item['time_zap'] }}
+        </span><br>
+    </p>
+    {% if show_form %}
+    <div align="right">
+        <form action="" method="post">
+            <input type="submit" value="Выбрать">
+            <input type="hidden" name="date_zap" value="{{ item['date_zap'] }}">
+            <input type="hidden" name="time_zap" value="{{ item['time_zap'] }}">
+        </form>
+    </div>
+    {% endif %}
+</div>
+{% endmacro %}

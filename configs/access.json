@@ -7,6 +7,6 @@
     "bp_query"
   ],
   "external": [
-    "blueprint_market"
+    "bp_market"
   ]
 }
