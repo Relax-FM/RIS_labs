@@ -1,6 +1,8 @@
 from flask import Blueprint, render_template, request, session, current_app, url_for
 from werkzeug.utils import redirect
 from database.sql_provider import SQLProvider
+from database.connection import UseDatabase
+import datetime
 import os
 from access import external_required
 from database.operations import select, select_dict, insert
@@ -46,6 +48,44 @@ def add_to_basket(prod_id: str, items:dict):
         session['basket'] = curr_basket
         session.permanent = True
     return True
+
+@blueprint_market.route('/save_order', methods=['GET','POST'])
+def save_order():
+    user_id = session.get('user_id')
+    current_basket = session.get('basket', {})
+    order_id = save_order_with_list(current_app.config['db_config'], user_id, current_basket)
+    if order_id:
+        session.pop('basket')
+        return render_template('order_created.html', order_id=order_id)
+    else:
+        return 'Что-то пошло не так'
+
+def save_order_with_list(dbconfig:dict, user_id:int, current_basket:dict):
+    with UseDatabase(dbconfig) as cursor:
+        if cursor is None:
+            raise ValueError('Курсор не создан')
+        date_object = datetime.date.today()
+        _sql = provider.get('insert_order.sql', user_id=user_id, order_date=date_object)
+        result1 = cursor.execute(_sql)
+        if result1 == 1:
+            _sql2 = provider.get('select_order_id.sql', user_id=user_id)
+            cursor.execute(_sql2)
+            order_id = cursor.fetchall()[0][0]
+            print('order_id = ', order_id)
+            if order_id:
+                for key in current_basket:
+                    print(key, current_basket[key]['amount'])
+                    prod_amount = current_basket[key]['amount']
+                    _sql3 = provider.get('insert_order_list.sql', order_id=order_id, prod_id=key, prod_amount=prod_amount)
+                    cursor.execute(_sql3)
+                return order_id
+
+
+@blueprint_market.route('/clear-basket')
+def clear_basket():
+    if 'basket' in session:
+        session.pop('basket')
+    return redirect(url_for('bp_market.order_index'))
 
 @blueprint_market.route('/speciality', methods=['GET', 'POST'])
 @external_required
