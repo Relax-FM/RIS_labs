@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Product_list</title>
+  <title>Список товаров</title>
 </head>
 <style>
   .named_list{
@@ -25,9 +25,9 @@
   </form>
   {% endfor %}
   <br><br>
-  <a href="{{url_for(bp_edit.insert_prod)}}">Добавить продукт</a>
+  <a href={{url_for('bp_edit.insert_prod')}} class="menu__link">Добавить продукт</a>
   <br><br>
-  <a href="{{url_for(bp_edit.exit)}}"> Окончание редактирования </a>
+  <a href={{url_for('menu_choice')}} class="menu__link">Окончить редактирование</a>
 
 </center>
 </body>

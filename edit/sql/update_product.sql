@@ -1,0 +1,1 @@
+update supermarket.product set prod_name='$prod_name', prod_measure='$prod_measure', prod_price='$prod_price' where prod_id='$prod_id';

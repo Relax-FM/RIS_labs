@@ -2,11 +2,13 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Update_ok</title>
+    <title>{{message}}</title>
 </head>
 <body>
 <center>
-    <h2>{{message}}</h2>
+    {{message}}
+    <br><br>
+    <a href={{url_for('bp_edit.show_all_products')}} class="menu__link">Вернуться к редактированию</a>
 </center>
 </body>
 </html>

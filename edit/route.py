@@ -1,10 +1,10 @@
-from flask import Blueprint, render_template, request, session, current_app, url_for
+from flask import Blueprint, render_template, request, session, current_app, url_for, flash
 from werkzeug.utils import redirect
 from database.sql_provider import SQLProvider
 from database.connection import UseDatabase
 import os
 from access import group_required
-from database.operations import select, select_dict, insert
+from database.operations import select, select_dict, insert, update
 
 blueprint_edit = Blueprint('bp_edit', __name__, template_folder='templates')
 provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
@@ -34,24 +34,77 @@ def edit_product():
 
 def update_prod(prod_id):
     prod_name = request.form.get('prod_name')
-    product_price = request.form.get('prod_price')
-    print('prod_name in update = ', prod_name)
-    message = f'Товар {prod_name} изменен в базе данных'
-    return message
+    prod_price = request.form.get('prod_price')
+    prod_measure = request.form.get('prod_measure')
+    if not prod_name:
+        return redirect(url_for('bp_edit.edit_product'))
+    if not prod_price:
+        return render_template('product_update.html', product={}, message="Вы не ввели цену продукта!")
+    if not prod_measure:
+        return render_template('product_update.html', product={}, message="Вы не ввели единицу измерения продукта!")
+    if prod_name and prod_price and prod_measure:
+        _sql = provider.get('update_product.sql', prod_name=prod_name, prod_measure=prod_measure, prod_price=prod_price,
+                            prod_id=prod_id)
+        result = update(current_app.config['db_config'], _sql)
+        print('prod_name in update = ', prod_name)
+        print('result = ', result)
+        message = f'Товар {prod_name} изменен в базе данных'
+        return message
 
 def del_prod(prod_id):
-    message = 'Товар удален из базы данных'
+    _sql = provider.get('delete_product.sql', prod_id=prod_id)
+    result = insert(current_app.config['db_config'], _sql)
+    print("result3 = ", result)
+    message = 'Упс! Что-то не так!'
+    if result:
+        message = 'Товар удален из базы данных'
     return message
 
-@blueprint_edit.route('/insert_prod', methods=['GET'])
+@blueprint_edit.route('/insert_prod', methods=['GET', 'POST'])
 @group_required
 def insert_prod():
-    product = {}
-    return render_template('product_update.html', product=product)
+    if request.method == 'POST':
+        prod_name = request.form.get('prod_name')
+        prod_price = request.form.get('prod_price')
+        prod_measure = request.form.get('prod_measure')
+        if not prod_name:
+            flash("Вы не ввели название продукта!")
+        if not prod_price:
+            flash("Вы не ввели цену продукта!")
+        if not prod_measure:
+            flash("Вы не ввели единицу измерения продукта!")
+        if prod_name and prod_price and prod_measure:
+            _sql = provider.get('insert_product.sql', prod_name=prod_name, prod_price=prod_price,
+                                prod_measure=prod_measure)
+            result = insert(current_app.config['db_config'], _sql)
+            print('result2 = ', result)
+            message = 'Упс! Что-то не так!'
+            if result:
+                message = f'Товар {prod_name} добавлен в базу данных'
+            return render_template('update_ok.html', message=message)
+    return render_template('product_update.html', product={})
 
-@blueprint_edit.route('/insert_prod', methods=['POST'])
-@group_required
-def inserted_product():
-    message = 'Товар добавлен в базу данных'
-    return render_template('update_ok.html', message=message)
+
+# @blueprint_edit.route('/insert_prod', methods=['POST'])
+# @group_required
+# def inserted_product():
+#     prod_name = request.form.get('prod_name')
+#     prod_price = request.form.get('prod_price')
+#     prod_measure = request.form.get('prod_measure')
+#     if not prod_name:
+#         flash("Вы не ввели название продукта!")
+#     if not prod_price:
+#         flash("Вы не ввели цену продукта!")
+#     if not prod_measure:
+#         flash("Вы не ввели единицу измерения продукта!")
+#     if prod_name and prod_price and prod_measure:
+#         _sql = provider.get('insert_product.sql', prod_name=prod_name, prod_price=prod_price, prod_measure=prod_measure)
+#         result = insert(current_app.config['db_config'], _sql)
+#         print('result2 = ', result)
+#         message = 'Упс! Что-то не так!'
+#         if result:
+#             message = f'Товар {prod_name} добавлен в базу данных'
+#         return render_template('update_ok.html', message=message)
+
+
 

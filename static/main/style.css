@@ -96,7 +96,7 @@ h1, h2, h3, h4, h5, h6 {
   color: #fff;
   font-size: 20px;
   transition-duration: 0.35s;
-  padding: 10px 20px 10px 20px;
+  padding: 10px 10px 10px 10px;
 }
 .menu__link:hover {
   background-color: rgba(227, 228, 248, 0.2);

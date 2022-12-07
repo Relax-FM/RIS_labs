@@ -6,7 +6,9 @@ from flask import session, render_template, current_app, request, redirect, url_
 def login_required(func):
     @wraps(func)
     def wrapper(*args, **kwargs):
+        print("Check")
         if 'user_id' in session:
+            print("Go to session")
             return func(*args, **kwargs)
         return redirect(url_for('blueprint_auth.start_auth'))
     return wrapper

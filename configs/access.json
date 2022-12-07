@@ -4,7 +4,8 @@
   ],
   "admin": [
     "bp_report",
-    "bp_query"
+    "bp_query",
+    "bp_edit"
   ],
   "external": [
     "bp_market"

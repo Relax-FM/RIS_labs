@@ -58,4 +58,11 @@ def insert(db_config:dict, _sql: str):
         result = cursor.execute(_sql)
     return result
 
+def update(db_config:dict, _sql:str):
+    with UseDatabase(db_config) as cursor:
+        if cursor is None:
+            raise ValueError('Update cursor not found')
+        result = cursor.execute(_sql)
+    return result
+
 #добавить проверку, существует ли отчет в обработчике (select count(*) ...) если 0 то..

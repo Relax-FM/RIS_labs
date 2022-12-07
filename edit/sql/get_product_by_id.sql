@@ -1,1 +1,1 @@
-select prod_name, prod_price from suermarket.product where prod_id = '$prod_id';
+select prod_name, prod_measure, prod_price, prod_id from supermarket.product where prod_id = '$prod_id';

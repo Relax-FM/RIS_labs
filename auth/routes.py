@@ -17,6 +17,7 @@ provider = SQLProvider(os.path.join(os.path.dirname(__file__), 'sql'))
 
 @blueprint_auth.route('/', methods=['GET', 'POST'])
 def start_auth():
+    print('start_auth')
     if request.method == 'GET':
         return render_template('input_login.html', message='')
     else:

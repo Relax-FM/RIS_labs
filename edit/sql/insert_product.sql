@@ -1,0 +1,1 @@
+insert into supermarket.product (prod_name, prod_measure, prod_price) values ('$prod_name', '$prod_measure', '$prod_price');

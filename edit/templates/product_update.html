@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Product_update</title>
+  <title>Изменить товар</title>
 </head>
 <style>
   .named_list{
@@ -16,6 +16,10 @@
 <body>
 <h2 align="center">Введите изменение в описание продукта</h2>
 <center>
+  {% for msg in get_flashed_messages() %}
+    <div class="flash">{{msg}}</div>
+  {% endfor %}
+  <br><br>
   <form action="" method="POST">
     <label for="prod_name" class="named_list">Название продукта</label>
     <input type="text" id="prod_name" name="prod_name" value="{{product['prod_name']}}">
@@ -23,9 +27,14 @@
     <label for="prod_price" class="named_list">Цена продукта</label>
     <input type="text" id="prod_price" name="prod_price" value="{{product['prod_price']}}">
     <br>
+    <label for="prod_measure" class="named_list">Единица измерения</label>
+    <input type="text" id="prod_measure" name="prod_measure" value="{{product['prod_measure']}}">
+    <br>
     <input type="hidden" name="prod_id" value="{{product['prod_id']}}">
     <button type="submit" name="action" value="update_prod">Отправить</button>
   </form>
+  <br><br>
+  <a href={{url_for('bp_edit.show_all_products')}} class="menu__link">Вернуться в меню редактирования</a>
 </center>
 </body>
 </html>

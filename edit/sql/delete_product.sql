@@ -1,0 +1,1 @@
+delete from supermarket.product where prod_id='$prod_id';
