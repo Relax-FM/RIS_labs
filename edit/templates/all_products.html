@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product_list</title>
+</head>
+<style>
+  .named_list{
+    font-size: 12pt;
+    color: green;
+    display: inline-block;
+    width: 300px;
+    text-align: left;
+  }
+</style>
+<body>
+<h2 align="center"> Список всех продуктов </h2>
+<center>
+  {% for product in products %}
+  <form action="" method="POST">
+    <label for="edit_prod" class="named_list">{{product['prod_name']}}</label>
+    <button type="submit" name="action" id="edit_prod" value="edit_prod">Редактировать</button>
+    <button type="submit" name="action" value="del_prod">Удалить</button>
+    <input type="hidden" name="prod_id" value="{{product['prod_id']}}">
+  </form>
+  {% endfor %}
+  <br><br>
+  <a href="{{url_for(bp_edit.insert_prod)}}">Добавить продукт</a>
+  <br><br>
+  <a href="{{url_for(bp_edit.exit)}}"> Окончание редактирования </a>
+
+</center>
+</body>
+</html>
