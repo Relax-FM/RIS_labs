@@ -5,6 +5,7 @@ from auth.routes import blueprint_auth
 from report.route import blueprint_report
 from query.route import blueprint_query
 from market.route import blueprint_market
+from edit.route import blueprint_edit
 from access import login_required
 
 
@@ -15,6 +16,7 @@ app.register_blueprint(blueprint_query, url_prefix='/query')
 app.register_blueprint(blueprint_auth, url_prefix='/auth')
 app.register_blueprint(blueprint_report, url_prefix='/report')
 app.register_blueprint(blueprint_market, url_prefix='/market')
+app.register_blueprint(blueprint_edit, url_prefix='/edit')
 
 app.config['db_config'] = json.load(open('configs/db.json'))
 app.config['access_config'] = json.load(open('configs/access.json'))
