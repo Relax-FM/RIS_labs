@@ -36,20 +36,14 @@ def update_prod(prod_id):
     prod_name = request.form.get('prod_name')
     prod_price = request.form.get('prod_price')
     prod_measure = request.form.get('prod_measure')
-    if not prod_name:
-        return redirect(url_for('bp_edit.edit_product'))
-    if not prod_price:
-        return render_template('product_update.html', product={}, message="Вы не ввели цену продукта!")
-    if not prod_measure:
-        return render_template('product_update.html', product={}, message="Вы не ввели единицу измерения продукта!")
-    if prod_name and prod_price and prod_measure:
-        _sql = provider.get('update_product.sql', prod_name=prod_name, prod_measure=prod_measure, prod_price=prod_price,
-                            prod_id=prod_id)
-        result = update(current_app.config['db_config'], _sql)
-        print('prod_name in update = ', prod_name)
-        print('result = ', result)
-        message = f'Товар {prod_name} изменен в базе данных'
-        return message
+    _sql = provider.get('update_product.sql', prod_name=prod_name, prod_measure=prod_measure, prod_price=prod_price,
+                        prod_id=prod_id)
+    result = update(current_app.config['db_config'], _sql)
+    print('prod_name in update = ', prod_name)
+    print('result = ', result)
+    message = f'Товар {prod_name} изменен в базе данных'
+    return message
+
 
 def del_prod(prod_id):
     _sql = provider.get('delete_product.sql', prod_id=prod_id)

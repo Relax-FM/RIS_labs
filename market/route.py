@@ -24,25 +24,35 @@ def order_index():
         print("basket_items : ", basket_items)
         return render_template('product_list.html', items=items, basket=basket_items)
     else:
+        action = request.form.get('action')
+        print('action:', action)
+        if action == 1:
+            print('start 1')
         prod_id = request.form['prod_id']
         print("prod_id : ", prod_id)
+        prod_col = request.form.get('prod_add_col')
+        print("prod_col : ", prod_col)
+        if prod_col is None:
+            prod_col = 1
+        print("prod_col 1: ", prod_col)
         sql = provider.get('product_list.sql')
         items = select_dict(db_config, sql)
 
-        add_to_basket(prod_id, items)
+        add_to_basket(prod_id, items, prod_col)
 
         return redirect(url_for('bp_market.order_index'))
 
-def add_to_basket(prod_id: str, items:dict):
+def add_to_basket(prod_id: str, items:dict, prod_col: str):
     item_description = [item for item in items if str(item['prod_id']) == str(prod_id)]
     print("Item_description before = ", item_description)
     item_description = item_description[0]
     print("Item description after : ", item_description)
     curr_basket = session.get('basket', {})
     print("curr_basket : ", curr_basket)
+    col = int(prod_col)
 
     if prod_id in curr_basket:
-        curr_basket[prod_id]['amount'] = curr_basket[prod_id]['amount'] + 1
+        curr_basket[prod_id]['amount'] = col
     else:
         curr_basket[prod_id] = {
             'prod_name': item_description['prod_name'],

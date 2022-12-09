@@ -34,7 +34,7 @@
             <a style="color:green" href="{{url_for('bp_market.clear_basket')}}">Очистить корзину</a>
             {% if basket %}
             {% for key in basket %}
-                {{ utils.render_item(basket[key], show_form=False, show_amount = True)}}
+                {{ utils.render_item(basket[key], key, show_form=False, show_amount = True)}}
             {% endfor %}
             {% else %}
                 <p>Ваша корзина пуста</p>
